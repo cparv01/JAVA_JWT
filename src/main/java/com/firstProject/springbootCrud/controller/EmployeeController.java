@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -26,6 +27,13 @@ public class EmployeeController {
     @GetMapping("/")
     public String greet(HttpServletRequest request) {
     	return request.getSession().getId();
+    }
+    
+    
+    //return current user name
+    @GetMapping("/current")
+    public String getLoggedUser(Principal principal) {
+    	return principal.getName();
     }
     
     @GetMapping("/session-info")
